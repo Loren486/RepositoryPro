@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alorenza <alorenza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 12:56:10 by alorenza          #+#    #+#             */
-/*   Updated: 2023/10/18 17:19:24 by alorenza         ###   ########.fr       */
+/*   Created: 2023/10/12 08:08:52 by alorenza          #+#    #+#             */
+/*   Updated: 2023/10/19 19:18:11 by alorenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstnew(void *content)
 {
-	t_list	*new;
+	t_list	*link;
 
-	if (lst == NULL)
+	link = (t_list *)malloc(sizeof(t_list));
+	if (link == NULL)
 		return (NULL);
-	new = lst;
-	while (new->next)
-	{
-		new = new->next;
-	}
-	return (new);
+	link->content = content;
+	link->next = NULL;
+	return (link);
 }
