@@ -11,9 +11,14 @@
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdarg.h>
+# include <unistd.h>
 
-#include <stdarg.h>
-#include <unistd.h>
-
+void	ft_putstr(char *str);
+int		ft_printstr(char *str);
+int		ft_printnbr(int n);
+int		ft_printchar(int c);
+int		ft_printpercent(void);
+int		ft_formats(va_list args, const char format);
 #endif

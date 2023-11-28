@@ -20,7 +20,7 @@ OBJ_DIR = ./obj/
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -I
 CLEAN = rm -rf
-
+COMP = ar rcs
 #Colores
 
 DEF_COLOR = \033[0;39m
@@ -43,11 +43,6 @@ OBJ_FILES = $(SRC_FILES:.c=.o)
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
-all: $(NAME)
-
-#linkers
-
-LINK = .Ofast
 
 all: obj $(NAME)
 
@@ -59,7 +54,9 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(LINK) -lm -o $(NAME)
+	@make -C $(LIBFT_DIR)
+	@mv $(LIBFT_DIR)./libft.a ./$(NAME)
+	@$(COMP) $(NAME) $(OBJ)
 	@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
 
 clean:
@@ -68,7 +65,7 @@ clean:
 
 fclean:
 	@$(CLEAN) $(NAME)
-	@$(CELAN) -f $(LIBFT)/libft.a
+	@$(CLEAN) -f $(LIBFT)/libft.a
 	@echo "$(GREEN)Cleaned all$(DEF_COLOR)"
 
 re: fclean all
